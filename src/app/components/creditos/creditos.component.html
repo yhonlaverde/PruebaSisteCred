@@ -1,0 +1,21 @@
+<div class="form-group">
+    <div class="row">
+        <div class="col-sm-12">
+            <app-dynamic-form *ngIf="fields.length > 0" [fields]="fields" [class]="'form-group col-lg-12'">
+            </app-dynamic-form>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <div class="row">
+        <div class="col-sm-6">
+    
+        </div>
+    
+        <div class="col-sm-6">
+            <button *ngIf="accionCreate" mat-raised-button (click)="guardarCredito()"> Guardar </button>
+            <button *ngIf="accionUpdate" mat-raised-button (click)="updateCredito()"> Actualizar </button>
+            <button mat-raised-button (click)="onClose()"> Cancelar </button>
+        </div>
+    </div>
+</div>

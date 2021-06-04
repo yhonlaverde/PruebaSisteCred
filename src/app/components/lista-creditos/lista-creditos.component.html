@@ -1,0 +1,58 @@
+<div class="mat-elevation-z8 row mb-4">
+    <mat-form-field class="mb-4">
+        <mat-label>Buscar Credito</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. PruebaSistecredito" #input>
+      </mat-form-field>
+      <table class="table">
+        <caption>Lista de creditos</caption>
+        <thead>
+          <tr>
+            <th scope="col">Nombres</th>
+            <th scope="col">Apellidos</th>
+            <th scope="col">Numero Celular</th>
+            <th scope="col">Correo Electrónico</th>
+            <th scope="col">Tipo Identificación</th>
+            <th scope="col">Numero Identificación</th>
+            <th scope="col">Valor Total Credito</th>
+            <th scope="col">Numero Cuotas</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of items" id="id1" (click)="SelectionClick(item)">
+            <td id="mat-cell">{{item.data?.Nombres | titlecase}}</td>
+            <td id="mat-cell">{{item.data?.Apellidos | titlecase}}</td>
+            <td id="mat-cell">{{item.data?.NumeroCelular | titlecase}}</td>
+            <td id="mat-cell">{{item.data?.CorreoElectronico | titlecase}}</td>
+            <td id="mat-cell">{{item.data?.TipoIdentificacion | titlecase}}</td>
+            <td id="mat-cell">{{item.data?.NumeroIdentificacion}}</td>
+            <td id="mat-cell">{{item.data?.ValorTotalCredito | currency}}</td>
+            <td id="mat-cell">{{item.data?.NumeroCuotas}}</td>
+          </tr>
+        </tbody>
+      </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>
+<div class="row">
+    <div class="col-sm-7">
+
+    </div>
+
+    <div class="col-sm-5">
+      <button class="btn btn--stripe"  *ngIf="mostrarClick" (click)="updateCredit()" mat-raised-button> Actualizar </button> 
+      <button class="btn btn--stripe"  *ngIf="mostrarClick" mat-raised-button  (click)="deleteCredit()"> Eliminar</button> 
+      <button class="btn btn--stripe" mat-raised-button (click)="addNew()"> Agregar </button>
+       
+    </div>
+</div>
+
+  
+  <div>
+    <h3>
+        Si desees realizar alguna acción dar clic en la lista
+    </h3>
+  </div>
+  <ul>
+    <li class="mb-4" *ngIf="mostrarClick">
+      Has seleccionado a:  <h3>{{clickedRows}}</h3> <br>
+    </li>
+  </ul>

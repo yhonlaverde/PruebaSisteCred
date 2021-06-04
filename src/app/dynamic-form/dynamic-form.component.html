@@ -1,0 +1,29 @@
+<form *ngIf="dynamicForm" [formGroup]="dynamicForm"  novalidate class="example-form">
+    <div class="row">
+        <div *ngFor="let item of fields" [class]="class">
+            <div [ngSwitch]="item?.metaDato">
+                <mat-form-field *ngSwitchCase="'TT'" class="example-full-width col-sm-4">
+                    <mat-label>{{ item?.descripcion }}</mat-label>
+                    <mat-label *ngIf="item?.esObligatorio">*</mat-label>
+                    <input ngDefaultControl matInput (keypress)="activeChildrenControl(item?.id)" [id]="item?.id.toString()"
+                    [formControlName]="item?.id" [(ngModel)]="item.valor" [readonly]="item?.configs?.disabled" />
+                  </mat-form-field>
+                  <mat-form-field *ngSwitchCase="'TN'" class="example-full-width col-sm-4">
+                    <mat-label>{{ item?.descripcion }}</mat-label>
+                    <mat-label *ngIf="item?.esObligatorio">*</mat-label>
+                    <input ngDefaultControl type="number" matInput (keypress)="activeChildrenControl(item?.id)" [id]="item?.id.toString()"
+                    [formControlName]="item?.id" [disabled]="item?.configs?.disabled" [(ngModel)]="item.valor" />
+                  </mat-form-field>
+                  <mat-form-field *ngSwitchCase="'LT'" class="example-full-width col-sm-4">
+                    <mat-label>{{ item?.descripcion }}</mat-label>
+                    <mat-label *ngIf="item?.esObligatorio">*</mat-label>
+                    <mat-select ngDefaultControl  (keypress)="activeChildrenControl(item?.id)" [id]="item?.id.toString()"
+                    [formControlName]="item?.id" [(ngModel)]="item.valor">
+                      <mat-option [value]="option?.valor" *ngFor="let option of item?.options">{{ option?.valor }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+            </div>
+        </div>
+    </div>
+</form>
